@@ -18,6 +18,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     RouterModule,
     AppRoutingModule,MatCardModule,
-    MatButtonModule,
+    MatButtonModule,MatProgressSpinnerModule,
     MatGridListModule,MatPaginatorModule,
     HttpClientModule,MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, BrowserAnimationsModule
   ],

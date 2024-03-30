@@ -1,9 +1,10 @@
-<mat-card class="container">
-  <mat-card-content class="wrapper">
-    <img class="banner-image" [src]="user?.avatar" [alt]="user?.first_name"  (click)="redirectToDetails(user.id)" /> 
-    <h2 (click)="redirectToDetails(user.id)">{{ user?.first_name }} {{ user?.last_name }}</h2>
-    <p>{{ user?.email }}</p>
-  </mat-card-content>
-
-
-</mat-card>
+<div class="user-card" *ngIf="user">
+  <figure (click)="redirectToDetails(user.id)">
+    <img [src]="user.avatar" alt="User Avatar">
+  </figure>
+  <div class="user-card-content">
+  
+    <h2  (click)="redirectToDetails(user.id)">  <span >{{user.id}} </span>{{ user.first_name || 'First Name' }} {{ user.last_name || 'Last Name' }}</h2>
+    <a [href]="'mailto:' + user.email"  (click)="redirectToDetails(user.id)">{{ user.email  }}</a>
+  </div>
+</div>

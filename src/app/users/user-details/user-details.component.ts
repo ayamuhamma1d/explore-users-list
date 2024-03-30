@@ -10,6 +10,7 @@ import { UsersService } from 'src/core/services/users.service';
 })
 export class UserDetailsComponent implements OnInit {
   userData: Users | null = null;
+  isLoading: boolean = false;
 
   constructor(private _userService: UsersService, private _activatedRoute: ActivatedRoute) {}
 
@@ -21,18 +22,17 @@ export class UserDetailsComponent implements OnInit {
   }
 
   getUserDetails(id: number): void {
+    this.isLoading = true; 
     this._userService.getUserById(id).subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.userData = res.data; 
+        this.isLoading = false;
       },
       error: (error) => {
-        console.error('Error fetching user details:', error);
-  
+        console.error('Error :', error);
+        this.isLoading = false; 
       }
     });
   }
 }
-
-
-

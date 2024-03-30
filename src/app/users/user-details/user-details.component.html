@@ -1,4 +1,8 @@
-<div class="user">
+<div  *ngIf="isLoading" class="loader">
+  <mat-spinner></mat-spinner>
+
+</div>
+<div class="user" *ngIf="!isLoading && userData">
   <div class="user-details">
     <div class="user-details-img">
       <figure >

@@ -1,35 +1,31 @@
 <div class="container">
-  <div class="search-container">
+  <header class="search-bar">
+    <h1>User Management System</h1>
     <input
       type="text"
-      name="search"
-      placeholder="Search by id..."
-      class="search-input"
-      [(ngModel)]="term"
-      (change)="search()"
+      placeholder="Search by ID"
+      [(ngModel)]="searchTerm"
+      (input)="search()"
     />
-    <a class="search-btn"><i class="fas fa-search"></i></a>
-  </div>
+  </header>
+
   <h2 class="error-message" *ngIf="errorMessage" class="error-msg">
     {{ errorMessage }}
   </h2>
 
-  <mat-grid-list
-    *ngIf="!errorMessage"
-    cols="3"
-    gutterSize="
-30px"
-    
-  >
-    <mat-grid-tile *ngFor="let user of allUsers" class="w">
-      <app-user-card [user]="user"></app-user-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <mat-paginator
-    *ngIf="havePagination"
-    [length]="totalPages"
-    [pageSize]="10"
-    (page)="pageChange($event)"
-  >
-  </mat-paginator>
+  <section class="" *ngIf="!errorMessage">
+    <div class="user-list">
+      <div *ngFor="let user of allUsers" class="user-list-style">
+        <app-user-card [user]="user"></app-user-card>
+      </div>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </div>
+    <mat-paginator
+      *ngIf="havePagination"
+      [length]="totalPages"
+      [pageSize]="10"
+      (page)="pageChange($event)"
+    >
+    </mat-paginator>
+  </section>
 </div>

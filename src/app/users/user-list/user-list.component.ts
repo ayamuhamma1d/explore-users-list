@@ -9,11 +9,13 @@ import { UsersService } from 'src/core/services/users.service';
 })
 export class UserListComponent implements OnInit {
   allUsers: Users[] = [];
-  currentPage:number = 1;
-  totalPages:number = 0;
-  isLoading:boolean = false;
+  currentPage: number = 1;
+  totalPages: number = 0;
+  isLoading: boolean = false;
   havePagination: boolean = true;
-  term: string = "";  errorMessage: string = "";
+  searchTerm: string = "";
+  errorMessage: string = "";
+
   constructor(private _userService: UsersService) { }
 
   ngOnInit(): void {
@@ -21,11 +23,18 @@ export class UserListComponent implements OnInit {
   }
 
   getAllUsers(): void {
+    this.isLoading = true; 
     this._userService.getUsers(this.currentPage).subscribe({
-      next: (res:any) => {
+      next: (res: any) => {
         console.log(res.data);
         this.allUsers = res.data;
-        this.totalPages = res.total; 
+        this.totalPages = res.total;
+        this.isLoading = false; 
+      },
+      error: (err) => {
+        console.error("Error fetching users:", err);
+        this.errorMessage = "Error fetching users";
+        this.isLoading = false;
       }
     });
   }
@@ -34,33 +43,33 @@ export class UserListComponent implements OnInit {
     this.currentPage = event.pageIndex + 1;
     this.getAllUsers();
   }
+
   search(): void {
-    if (this.term) {
-      const userId = parseInt(this.term);
+    if (this.searchTerm) {
+      const userId = parseInt(this.searchTerm);
       if (!isNaN(userId)) {
         this.havePagination = false;
+        this.isLoading = true; 
         this._userService.getUserById(userId).subscribe({
-          next: (res:any) => {
+          next: (res: any) => {
             if (res.data) {
               this.allUsers = [res.data];
               this.errorMessage = "";
             } else {
               this.allUsers = [];
               this.errorMessage = "User not found";
-              this.havePagination=false;
             }
+            this.isLoading = false; 
           },
           error: (err) => {
             console.error("Error fetching user:", err);
-            this.errorMessage = " error occurred while fetching user data";
-            this.havePagination=false;
-
+            this.errorMessage = "Invalid user ID";
+            this.isLoading = false; 
           }
         });
       } else {
         this.errorMessage = "Invalid user ID";
-        this.havePagination=false;
-
+        this.havePagination = false;
       }
     } else {
       this.havePagination = true;
@@ -68,5 +77,4 @@ export class UserListComponent implements OnInit {
       this.getAllUsers();
     }
   }
-  
 }

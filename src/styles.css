@@ -1,12 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  font-size: 16px;
+  --main-color:#ceb971;
+}
+body{
+  font-family: 'Righteous', sans-serif;
 
-body {
-  /* background: rgb(174, 155, 90); */
-  /* background: linear-gradient(45deg, rgb(195, 179, 127) 0%, rgb(190, 185, 156) 100%); */
-  background-size: cover;
-  background-position: center;
+}
+h1,h2,h3,ul,li,a{
+  font-family: 'Righteous', sans-serif;
 
-
-
+}
+a{
+  text-decoration: none;
+  color: #fff;
+}
+ul{
+  list-style-type: none;
+}
+.container{
+  width: 75%;
+  margin: auto;
 }
