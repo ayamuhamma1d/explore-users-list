@@ -28,23 +28,30 @@ nav{
   color: #000000;
 }
 li{
-  padding: 2rem;
+  padding: 1rem;
   font-size: 1rem;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:1200px){
   .container{
     width: 85%;
   }
   .logo{
-    width: 40%;
+    width: 20%;
+
   }
   .nav-links{
-    width: 50%;
+    width: 80%;
+    align-items: end;
+
 
   }
   .logo img{
-    width: 40px;
+    width: 60px;
   }
 }
 @media screen and (max-width:360px){
@@ -57,6 +64,7 @@ li{
   }
   .nav-links{
     width: 60%;
+    align-items: end;
 
   }
   .logo img{

@@ -96,7 +96,7 @@ h2{
 @media screen and (max-width: 768px){
   .container{
     padding: 5rem 0;
-    width: 85%;
+    width:90%;
     margin: auto;
 
   }
@@ -105,13 +105,21 @@ h2{
   justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    gap:2rem;
+    column-gap:0rem;
+    row-gap: 0.8rem;
     margin-bottom: 2rem;
 
 
   }
   .user-list-style{
-    width:50% ;
+    width:90% ;
+
+  }
+  .mat-mdc-paginator {
+
+    font-size:0.9rem;
+    font-weight: bold;
+
 
   }
 }
