@@ -1,0 +1,26 @@
+<div class="user">
+  <div class="user-details">
+    <div class="user-details-img">
+      <figure >
+        <img [src]="userData?.avatar" alt="" />
+      </figure>
+    </div>
+    <div class="user-details-info">
+      <div class="user-details-id">
+       <div class="">
+        <p> {{ userData?.id }}</p>
+       </div>
+      </div>
+      <h1>{{ userData?.first_name }} {{ userData?.last_name }}</h1>
+      <hr>
+      <ul>
+        <li><span>First Name :</span> {{ userData?.first_name }}</li>
+        <li><span>Last Name :</span> {{ userData?.last_name }}</li>
+        <li><span>Email  :</span> {{ userData?.email }}</li>
+    
+ 
+      </ul>
+    </div>
+  </div>
+
+</div>

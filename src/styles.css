@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+body {
+  /* background: rgb(174, 155, 90); */
+  /* background: linear-gradient(45deg, rgb(195, 179, 127) 0%, rgb(190, 185, 156) 100%); */
+  background-size: cover;
+  background-position: center;
+
+
+
+}

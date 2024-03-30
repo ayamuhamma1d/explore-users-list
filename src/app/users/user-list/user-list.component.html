@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="search-container">
+    <input
+      type="text"
+      name="search"
+      placeholder="Search by id..."
+      class="search-input"
+      [(ngModel)]="term"
+      (change)="search()"
+    />
+    <a class="search-btn"><i class="fas fa-search"></i></a>
+  </div>
+  <h2 class="error-message" *ngIf="errorMessage" class="error-msg">
+    {{ errorMessage }}
+  </h2>
+
+  <mat-grid-list
+    *ngIf="!errorMessage"
+    cols="3"
+    gutterSize="
+30px"
+    
+  >
+    <mat-grid-tile *ngFor="let user of allUsers" class="w">
+      <app-user-card [user]="user"></app-user-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-paginator
+    *ngIf="havePagination"
+    [length]="totalPages"
+    [pageSize]="10"
+    (page)="pageChange($event)"
+  >
+  </mat-paginator>
+</div>
