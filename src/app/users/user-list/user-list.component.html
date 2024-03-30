@@ -20,7 +20,7 @@
       </div>
       <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
-    <mat-paginator *ngIf="havePagination" [length]="totalPages" [pageSize]="6"></mat-paginator>
+    <mat-paginator *ngIf="havePagination" [length]="totalPages" [pageSize]="6"   (page)="pageChange($event)"></mat-paginator>
 
   </section>
 </div>
