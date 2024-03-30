@@ -64,9 +64,46 @@ margin-right: 0.2rem;
   }
   }
 @media screen and (max-width:425px){
-  .user-card{
-  
-    padding: 2rem 3rem;
-  
+  h2{
+
+    font-size: 1.2rem;
+
+    text-align: left;
+    margin-bottom: 1rem;
+    display: block;
+
+
   }
+  .user-card{
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .user-card-img{
+    width: 30%;
+
+  }
+  .user-card-img img{
+    width: 93%;
+
+  }
+  .user-card-content{
+    width:65%;
+  }
+  .user-email{
+    display: none;
+  }
+  .user-card-content span{
+
+    margin-right: 0.5rem;
+    }
+    .user-card-content a{
+    
+       display: none;
+
+
+    }
   }

@@ -16,7 +16,7 @@ nav{
 
 }
 .logo img{
-  width: 40px;
+  width: 50px;
 }
 .nav-links{
   width: 20%;
@@ -28,20 +28,38 @@ nav{
   color: #000000;
 }
 li{
-  padding: 1.5rem;
+  padding: 2rem;
   font-size: 1rem;
 }
 
 @media screen and (max-width:768px){
   .container{
+    width: 85%;
+  }
+  .logo{
+    width: 40%;
+  }
+  .nav-links{
+    width: 50%;
+
+  }
+  .logo img{
+    width: 40px;
+  }
+}
+@media screen and (max-width:360px){
+  .container{
     width: 90%;
   }
   .logo{
-    width: 60%;
-  
+    width: 20%;
+
   }
   .nav-links{
-    width: 40%;
-  
+    width: 60%;
+
+  }
+  .logo img{
+    width: 40px;
   }
 }

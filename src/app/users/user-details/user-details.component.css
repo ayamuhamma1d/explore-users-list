@@ -90,14 +90,10 @@ li span {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
+  height: 100vh;
 }
 @media screen and (max-width:1200px){
- 
-  
 
-
-  
   .user-details-img {
     width: 30%;
   }
@@ -110,10 +106,10 @@ li span {
     font-family: 'Righteous', sans-serif;
     font-size  : 2rem;
   }
-  
+
   .user {
     background-color: #fff;
-  
+
     align-items: center;
     width      : 95%;
     margin     : auto;
@@ -121,7 +117,7 @@ li span {
      padding: 6rem 5rem;
   }
 
-  
+
   .user-details-img {
     width: 80%;
     margin: auto;
@@ -134,15 +130,15 @@ li span {
   .user {
 
     width      : 95%;
-  
-  
+
+
   }
   .user-details-img {
     width: 100%;
   }
   .user-details-info {
     width  : 100%;
-  
+
   }
-  
+
   }
