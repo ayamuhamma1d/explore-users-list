@@ -9,18 +9,17 @@
     />
   </header>
 
-  <h2 class="error-message" *ngIf="errorMessage" class="error-msg">
+  <h2 class="error-message" *ngIf="errorMessage" [ngClass]="{'full-height ': searchTerm,'error ': searchTerm}">
     {{ errorMessage }}
   </h2>
 
-  <section  *ngIf="!errorMessage" >
+  <section [ngClass]="{'full-height': searchTerm}" *ngIf="!errorMessage">
     <div class="user-list">
       <div *ngFor="let user of allUsers" class="user-list-style">
         <app-user-card [user]="user"></app-user-card>
       </div>
       <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
-    <mat-paginator *ngIf="havePagination" [length]="totalPages" [pageSize]="6"   (page)="pageChange($event)"></mat-paginator>
-
+    <mat-paginator *ngIf="havePagination" [length]="totalPages" [pageSize]="6" (page)="pageChange($event)"></mat-paginator>
   </section>
 </div>
