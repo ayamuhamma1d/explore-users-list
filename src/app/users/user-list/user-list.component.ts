@@ -34,7 +34,9 @@ export class UserListComponent implements OnInit {
         this.updateArrowStatus();
       } else if (window.location.pathname === '/user-list') {
         this.currentPage = 1;
+        this.pageChange(this.currentPage);
         this.getAllUsers();
+
         this.updateArrowStatus();
       } else {
         this.getAllUsers();
@@ -61,12 +63,21 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  pageChange(event: any): void {
+  pageChange(event: any, page?: number): void {
     this.currentPage = event.pageIndex + 1;
     this._router.navigate([], { queryParams: { page: this.currentPage } });
-    this.getAllUsers();
     this.updateArrowStatus();
+
+    if (page) {
+      this.currentPage = 1;
+      this.getAllUsers();
+      this.updateArrowStatus();
+    } else {
+      this.getAllUsers();
+      this.updateArrowStatus();
+    }
   }
+
 
   search(): void {
     if (this.searchTerm) {
@@ -114,8 +125,8 @@ export class UserListComponent implements OnInit {
       this.currentPage--;
       this._router.navigate([], { queryParams: { page: this.currentPage } });
       this.getAllUsers();
+
       this.updateArrowStatus();
-    
     }
   }
 
@@ -125,11 +136,6 @@ export class UserListComponent implements OnInit {
       this._router.navigate([], { queryParams: { page: this.currentPage } });
       this.getAllUsers();
       this.updateArrowStatus();
-
-    }
-    if (this.currentPage === 2) {
-      this.isPrevActive = true;
-      this.isNextActive = false;
     }
   }
 
