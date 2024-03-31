@@ -14,11 +14,13 @@ export class UserListComponent implements OnInit {
   totalPages: number = 0;
   isLoading: boolean = false;
   havePagination: boolean = true;
-  searchTerm: string = "";
-  errorMessage: string = "";
-  isPrevActive: boolean = false;
-  isNextActive: boolean = true;
+  searchTerm: string = '';
+  errorMessage: string = '';
 
+  pages: number[] = [];
+  isActive(page: number): boolean {
+    return page === this.currentPage;
+  }
   constructor(
     private _userService: UsersService,
     private _router: Router,
@@ -31,52 +33,50 @@ export class UserListComponent implements OnInit {
       if (page) {
         this.currentPage = +page;
         this.getAllUsers();
-        this.updateArrowStatus();
+
       } else if (window.location.pathname === '/user-list') {
         this.currentPage = 1;
         this.getAllUsers();
-        this.updateArrowStatus();
+
       } else {
-        this.getAllUsers(); 
+        this.getAllUsers();
       }
     });
   }
-
 
   getAllUsers(): void {
     this.isLoading = true;
     this._userService.getUsers(this.currentPage).subscribe({
       next: (res: any) => {
-        console.log(res.data);
         this.allUsers = res.data;
-        this.totalPages = res.total;
+        this.totalPages = 2;
         this.isLoading = false;
         window.scrollTo(0, 0);
+        this.generatePageNumbers();
       },
-      error: (err) => {
-        console.error("Error fetching users:", err);
-        this.errorMessage = "Error fetching users";
+      error: err => {
+        console.error('Error fetching users:', err);
+        this.errorMessage = 'Error fetching users';
         this.isLoading = false;
       }
     });
   }
 
-  pageChange(event: any, page?: number): void {
-    this.currentPage = event.pageIndex + 1;
-    this._router.navigate([], { queryParams: { page: this.currentPage } });
-    this.updateArrowStatus();
-
-    if (page) {
-      this.currentPage = 1;
-      this.getAllUsers();
-      this.updateArrowStatus();
-    } else {
-      this.getAllUsers();
-      this.updateArrowStatus();
+  generatePageNumbers(): void {
+    this.pages = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      this.pages.push(i);
     }
   }
 
+  changePage(page: number): void {
+    if (page !== this.currentPage) {
+      this.currentPage = page;
+      this._router.navigate([], { queryParams: { page: this.currentPage } });
+      this.getAllUsers();
 
+    }
+  }
   search(): void {
     if (this.searchTerm) {
       const userId = parseInt(this.searchTerm);
@@ -87,54 +87,30 @@ export class UserListComponent implements OnInit {
           next: (res: any) => {
             if (res.data) {
               this.allUsers = [res.data];
-              this.errorMessage = "";
+              this.errorMessage = '';
             } else {
               this.allUsers = [];
-              this.errorMessage = "User not found";
+              this.errorMessage = 'User not found';
             }
             this.isLoading = false;
             window.scrollTo(0, 0);
           },
-          error: (err) => {
-            console.error("Error fetching user:", err);
-            this.errorMessage = "Invalid user ID";
+          error: err => {
+            console.error('Error fetching user:', err);
+            this.errorMessage = 'Invalid user ID';
             this.isLoading = false;
           }
         });
       } else {
-        this.errorMessage = "Invalid user ID";
+        this.errorMessage = 'Invalid user ID';
         this.havePagination = false;
       }
     } else {
       this.havePagination = true;
-      this.errorMessage = "";
+      this.errorMessage = '';
       this.getAllUsers();
     }
   }
 
-
-
-  updateArrowStatus(): void {
-    this.isPrevActive = this.currentPage > 1;
-    this.isNextActive = this.currentPage < this.totalPages;
-  }
-  previousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this._router.navigate([], { queryParams: { page: this.currentPage } });
-      this.getAllUsers();
-
-      this.updateArrowStatus();
-    }
-  }
-
-  nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this._router.navigate([], { queryParams: { page: this.currentPage } });
-      this.getAllUsers();
-      this.updateArrowStatus();
-    }
-  }
 
 }

@@ -16,17 +16,17 @@
   <section [ngClass]="{ 'full-height': searchTerm }" *ngIf="!errorMessage">
     <div class="user-list">
       <div *ngFor="let user of allUsers" class="user-list-style">
-        <app-user-card [user]="user"></app-user-card>
+        <app-user-card [user]="user" [previousPage]="currentPage"></app-user-card>
       </div>
       <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
-    <mat-paginator *ngIf="havePagination" [length]="totalPages" [pageSize]="6" (page)="pageChange($event)">
-      <button mat-button *ngIf="isPrevActive" class="mat-paginator-navigation-previous mat-icon-button" (click)="previousPage()">
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-      <button mat-button *ngIf="isNextActive" class="mat-paginator-navigation-next mat-icon-button" (click)="nextPage()">
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    </mat-paginator>
+    <div class="btn-paginacao" *ngIf="havePagination">
+      <ul>
+        <li *ngFor="let page of pages">
+          <button (click)="changePage(page)" [ngClass]="{ 'active': isActive(page) }">{{ page }}</button>
+        </li>
+      </ul>
+    </div>
+
   </section>
 </div>

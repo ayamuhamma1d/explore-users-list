@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class UserCardComponent {
   constructor(private _router: Router){}
   @Input() user:Users={} as Users;
+  @Input() previousPage: number = 1;
+
   redirectToDetails(id:number):void {
 
   this._router.navigate(['user-details', id])

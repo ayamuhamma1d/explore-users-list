@@ -28,6 +28,7 @@ export class UserDetailsComponent implements OnInit {
 
     this._activatedRoute.params.subscribe(params => {
       const userId = +params['id'];
+      this.previousPage = userId >= 7 ? 2 : 1;
       this.getUserDetails(userId);
     });
   }
@@ -36,7 +37,6 @@ export class UserDetailsComponent implements OnInit {
     this.isLoading = true;
     this._userService.getUserById(id).subscribe({
       next: (res: any) => {
-        console.log(res.data);
         this.userData = res.data;
         this.isLoading = false;
         window.scrollTo(0, 0);
@@ -49,7 +49,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    const url = `/user-list?page=${this.previousPage}`;
-    this._location.go(url);
+    const previousPage = this.previousPage || 1;
+    this._router.navigate(['/user-list'], { queryParams: { page: previousPage } });
   }
 }

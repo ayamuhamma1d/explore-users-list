@@ -5,7 +5,10 @@
 
 
 }
-
+.mat-mdc-paginator-range-label {
+  display:flex;
+display: none;
+}
 header {
   margin-bottom: 3rem;
 }
@@ -109,6 +112,43 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+
+.btn-paginacao {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-paginacao ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.btn-paginacao li {
+  margin-right:10px;
+}
+
+.btn-paginacao button {
+  background-color: #d5d5d5;
+  color: #070707;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-paginacao button:hover {
+  background-color: var(--main-color);
+}
+
+.btn-paginacao button.active {
+  background-color: var(--main-color);
 }
 
 @media screen and (max-width: 1200px) {

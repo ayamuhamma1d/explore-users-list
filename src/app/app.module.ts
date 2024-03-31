@@ -16,10 +16,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
