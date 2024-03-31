@@ -1,6 +1,7 @@
 import { Users } from 'src/app/interface/users';
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/core/services/users.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -15,14 +16,32 @@ export class UserListComponent implements OnInit {
   havePagination: boolean = true;
   searchTerm: string = "";
   errorMessage: string = "";
+  isPrevActive: boolean = false;
+  isNextActive: boolean = true;
 
-  constructor(private _userService: UsersService) { }
+  constructor(
+    private _userService: UsersService,
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-
-    this.getAllUsers();
-
+    this._route.queryParams.subscribe(params => {
+      const page = params['page'];
+      if (page) {
+        this.currentPage = +page;
+        this.getAllUsers();
+        this.updateArrowStatus();
+      } else if (window.location.pathname === '/user-list') {
+        this.currentPage = 1;
+        this.getAllUsers();
+        this.updateArrowStatus();
+      } else {
+        this.getAllUsers();
+      }
+    });
   }
+
 
   getAllUsers(): void {
     this.isLoading = true;
@@ -31,7 +50,8 @@ export class UserListComponent implements OnInit {
         console.log(res.data);
         this.allUsers = res.data;
         this.totalPages = res.total;
-        this.isLoading = false; window.scrollTo(0, 0)
+        this.isLoading = false;
+        window.scrollTo(0, 0);
       },
       error: (err) => {
         console.error("Error fetching users:", err);
@@ -43,8 +63,9 @@ export class UserListComponent implements OnInit {
 
   pageChange(event: any): void {
     this.currentPage = event.pageIndex + 1;
-
+    this._router.navigate([], { queryParams: { page: this.currentPage } });
     this.getAllUsers();
+    this.updateArrowStatus();
   }
 
   search(): void {
@@ -81,4 +102,35 @@ export class UserListComponent implements OnInit {
       this.getAllUsers();
     }
   }
+
+
+
+  updateArrowStatus(): void {
+    this.isPrevActive = this.currentPage > 1;
+    this.isNextActive = this.currentPage < this.totalPages;
+  }
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this._router.navigate([], { queryParams: { page: this.currentPage } });
+      this.getAllUsers();
+      this.updateArrowStatus();
+    
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this._router.navigate([], { queryParams: { page: this.currentPage } });
+      this.getAllUsers();
+      this.updateArrowStatus();
+
+    }
+    if (this.currentPage === 2) {
+      this.isPrevActive = true;
+      this.isNextActive = false;
+    }
+  }
+
 }

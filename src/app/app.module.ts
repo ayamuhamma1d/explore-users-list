@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './users/user-list/user-list.component';
-import { UserCardComponent } from './users/user-card/user-card.component';
-import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -18,17 +15,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from './shared/shared.module';
+import { UsersModule } from './users/users.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    UserCardComponent,
-    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     SharedModule,
+    UsersModule,
     AppRoutingModule,
     MatCardModule,
     MatButtonModule,

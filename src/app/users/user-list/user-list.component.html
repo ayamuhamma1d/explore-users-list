@@ -9,17 +9,24 @@
     />
   </header>
 
-  <h2 class="error-message" *ngIf="errorMessage" [ngClass]="{'full-height ': searchTerm,'error ': searchTerm}">
+  <h2 class="error-message" *ngIf="errorMessage" [ngClass]="{ 'full-height': searchTerm }">
     {{ errorMessage }}
   </h2>
 
-  <section [ngClass]="{'full-height': searchTerm}" *ngIf="!errorMessage">
+  <section [ngClass]="{ 'full-height': searchTerm }" *ngIf="!errorMessage">
     <div class="user-list">
       <div *ngFor="let user of allUsers" class="user-list-style">
         <app-user-card [user]="user"></app-user-card>
       </div>
       <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
-    <mat-paginator *ngIf="havePagination" [length]="totalPages" [pageSize]="6" (page)="pageChange($event)"></mat-paginator>
+    <mat-paginator *ngIf="havePagination" [length]="totalPages" [pageSize]="6" (page)="pageChange($event)">
+      <button mat-button *ngIf="isPrevActive" class="mat-paginator-navigation-previous mat-icon-button" (click)="previousPage()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button mat-button *ngIf="isNextActive" class="mat-paginator-navigation-next mat-icon-button" (click)="nextPage()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </mat-paginator>
   </section>
 </div>

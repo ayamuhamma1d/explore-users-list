@@ -11,7 +11,7 @@ export class UserCardComponent {
   constructor(private _router: Router){}
   @Input() user:Users={} as Users;
   redirectToDetails(id:number):void {
- 
+
   this._router.navigate(['user-details', id])
   }
 

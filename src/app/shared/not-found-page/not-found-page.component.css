@@ -1,0 +1,45 @@
+.cover-background {
+  position: relative ;
+  background-size: cover ;
+  overflow: hidden ;
+  background-position: center ;
+  background-repeat: no-repeat ;
+  
+
+}
+.p-0 {
+  padding: 0 ;
+}
+section {
+  padding: 120px 0;
+  overflow: hidden;
+  background: #fff;
+
+}
+
+.error-page {
+  background-color: #bababa4a;
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(234, 234, 235, 0.2);
+  padding: 80px 20px;
+  height: 100vh;
+}
+.text-center {
+  text-align: center ;
+}
+.error-page h1 {
+  font-size: 200px;
+  line-height: 1;
+  font-weight: 600;
+}
+.text-secondary {
+  color: #15395a ;
+}
+.mb-4 {
+  margin-bottom: 1.5rem ;
+}
+.btn-info {
+  background-color: #15395a;
+  color: #fff;
+}

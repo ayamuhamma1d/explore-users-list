@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/interface/users';
 import { UsersService } from 'src/core/services/users.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-details',
@@ -11,10 +12,20 @@ import { UsersService } from 'src/core/services/users.service';
 export class UserDetailsComponent implements OnInit {
   userData: Users | null = null;
   isLoading: boolean = false;
+  previousPage: number = 1;
 
-  constructor(private _userService: UsersService, private _activatedRoute: ActivatedRoute) {}
+  constructor(
+    private _userService: UsersService,
+    private _activatedRoute: ActivatedRoute,
+    private _location: Location,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
+    this._activatedRoute.queryParams.subscribe(params => {
+      this.previousPage = params['page'] || 1;
+    });
+
     this._activatedRoute.params.subscribe(params => {
       const userId = +params['id'];
       this.getUserDetails(userId);
@@ -35,5 +46,10 @@ export class UserDetailsComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  goBack(): void {
+    const url = `/user-list?page=${this.previousPage}`;
+    this._location.go(url);
   }
 }

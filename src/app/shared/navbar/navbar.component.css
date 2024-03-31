@@ -20,8 +20,6 @@ nav{
   width: 20%;
 }
 .active{
-
-
   color:var(--main-color);
 }
 li{
