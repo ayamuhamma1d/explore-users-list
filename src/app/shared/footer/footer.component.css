@@ -1,28 +1,22 @@
-
 .footer {
-  display: flex;
-  flex-flow: row wrap;
-  padding: 30px 30px 20px 30px;
-  color: #ffffff;
+  display         : flex;
+  flex-flow       : row wrap;
+  padding         : 30px 30px 20px 30px;
+  color           : #ffffff;
   background-color: #000000;
-  border-top: 1px solid #e5e5e5;
-  color: #fff;
+  border-top      : 1px solid #e5e5e5;
+  color           : #fff;
 }
 
-.footer > * {
-  flex:  1 100%;
+.footer>* {
+  flex: 1 100%;
 }
 
 
 .footer__logo {
   font-weight: 400;
-  font-size: 2rem;
-  text-align: center;
+  font-size  : 2rem;
+  text-align : center;
   font-family: 'Righteous', sans-serif;
 
 }
-
-
-
-
-

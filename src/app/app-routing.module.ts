@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { NotFoundPageComponent } from './shared/not-found-page/not-found-page.component';
-
-
 const routes: Routes = [
   {
     path: "",
@@ -20,7 +18,6 @@ const routes: Routes = [
     component: NotFoundPageComponent
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
