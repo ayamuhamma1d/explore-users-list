@@ -34,12 +34,10 @@ export class UserListComponent implements OnInit {
         this.updateArrowStatus();
       } else if (window.location.pathname === '/user-list') {
         this.currentPage = 1;
-        this.pageChange(this.currentPage);
         this.getAllUsers();
-
         this.updateArrowStatus();
       } else {
-        this.getAllUsers();
+        this.getAllUsers(); 
       }
     });
   }
