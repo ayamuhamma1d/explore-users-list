@@ -13,7 +13,7 @@
     {{ errorMessage }}
   </h2>
 
-  <section class="" *ngIf="!errorMessage">
+  <section  *ngIf="!errorMessage" >
     <div class="user-list">
       <div *ngFor="let user of allUsers" class="user-list-style">
         <app-user-card [user]="user"></app-user-card>

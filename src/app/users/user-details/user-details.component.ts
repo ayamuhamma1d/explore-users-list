@@ -16,22 +16,23 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
-      const userId = +params['id']; 
+      const userId = +params['id'];
       this.getUserDetails(userId);
     });
   }
 
   getUserDetails(id: number): void {
-    this.isLoading = true; 
+    this.isLoading = true;
     this._userService.getUserById(id).subscribe({
       next: (res: any) => {
         console.log(res.data);
-        this.userData = res.data; 
+        this.userData = res.data;
         this.isLoading = false;
+        window.scrollTo(0, 0);
       },
       error: (error) => {
         console.error('Error :', error);
-        this.isLoading = false; 
+        this.isLoading = false;
       }
     });
   }

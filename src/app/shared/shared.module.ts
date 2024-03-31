@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component'; 
 import { FooterComponent } from './footer/footer.component';
 import { SharedRoutingModule } from './shared-routing.module';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundPageComponent
   ],
   imports: [
     CommonModule,

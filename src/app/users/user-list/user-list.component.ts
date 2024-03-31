@@ -19,17 +19,19 @@ export class UserListComponent implements OnInit {
   constructor(private _userService: UsersService) { }
 
   ngOnInit(): void {
+
     this.getAllUsers();
+
   }
 
   getAllUsers(): void {
-    this.isLoading = true; 
+    this.isLoading = true;
     this._userService.getUsers(this.currentPage).subscribe({
       next: (res: any) => {
         console.log(res.data);
         this.allUsers = res.data;
         this.totalPages = res.total;
-        this.isLoading = false; 
+        this.isLoading = false; window.scrollTo(0, 0)
       },
       error: (err) => {
         console.error("Error fetching users:", err);
@@ -41,6 +43,7 @@ export class UserListComponent implements OnInit {
 
   pageChange(event: any): void {
     this.currentPage = event.pageIndex + 1;
+
     this.getAllUsers();
   }
 
@@ -49,7 +52,7 @@ export class UserListComponent implements OnInit {
       const userId = parseInt(this.searchTerm);
       if (!isNaN(userId)) {
         this.havePagination = false;
-        this.isLoading = true; 
+        this.isLoading = true;
         this._userService.getUserById(userId).subscribe({
           next: (res: any) => {
             if (res.data) {
@@ -59,12 +62,13 @@ export class UserListComponent implements OnInit {
               this.allUsers = [];
               this.errorMessage = "User not found";
             }
-            this.isLoading = false; 
+            this.isLoading = false;
+            window.scrollTo(0, 0);
           },
           error: (err) => {
             console.error("Error fetching user:", err);
             this.errorMessage = "Invalid user ID";
-            this.isLoading = false; 
+            this.isLoading = false;
           }
         });
       } else {
